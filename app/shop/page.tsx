@@ -56,6 +56,7 @@ export default async function ShopPage() {
                     month: 'long',
                     year: 'numeric',
                   }).format(convertPurchasedDate(row.purchaseDate))}</td>
+                  <td className="px-6 py-4">{row.description}</td>
                   <td className="px-6 py-4">{new Intl.DateTimeFormat('id', {
                     weekday: 'long',
                     hour: '2-digit',
@@ -64,7 +65,6 @@ export default async function ShopPage() {
                     month: 'long',
                     year: 'numeric',
                   }).format(convertPurchasedDate(row.createdAt))}</td>
-                  <td className="px-6 py-4">{row.description}</td>
                   <td><DetailShop item={row}/></td>
                 </tr>
               ))}
