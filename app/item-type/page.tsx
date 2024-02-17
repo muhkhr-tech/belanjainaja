@@ -24,7 +24,7 @@ export default function ItemTypePage() {
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [rows])
 
   return (
     <div>
