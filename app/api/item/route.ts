@@ -10,7 +10,7 @@ export async function GET(request: Request) {
   let resp = null
   
   if (name) {
-    resp = await db.select().from(Item).where(ilike(Item.name, "%" + name + "%"))
+    resp = await db.select().from(Item).leftJoin(ItemType, eq(Item.typeId, ItemType.id)).where(ilike(Item.name, "%" + name + "%"))
   } else {
     resp = await db.select().from(Item).leftJoin(ItemType, eq(Item.typeId, ItemType.id))
   }

@@ -33,7 +33,7 @@ export default function AddShop({ items }: any) {
     status: '',
     message: ''
   })
-
+console.log(items)
   const router = useRouter()
 
   const handleChange = (e: any) => {
@@ -69,12 +69,13 @@ export default function AddShop({ items }: any) {
     setItemName(e.target.value)
 
     setLoadData(true)
-
+    console.log('bisa')
     try {
       const resp = await fetch(`/api/item?name=${e.target.value}`)
       const data = await resp.json()
-
+      console.log('tidak bisa', data)
       setItemSearched(data)
+      console.log('sepertinya disini')
     } catch (err) {
       console.log(err)
     }
