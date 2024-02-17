@@ -2,6 +2,8 @@ import { db } from "@/lib/db"
 import { Deposit } from "@/lib/schema"
 import { SQL, eq } from "drizzle-orm"
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const date_param = searchParams.get('date')

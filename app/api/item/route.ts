@@ -2,6 +2,8 @@ import { db } from "@/lib/db"
 import { Item, ItemType } from "@/lib/schema"
 import { eq, ilike } from "drizzle-orm"
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const name = searchParams.get('name')
