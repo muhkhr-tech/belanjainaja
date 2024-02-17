@@ -2,6 +2,12 @@ import "@/app/globals.css";
 import SidebarSection from "./components/sidebar";
 import NavbarBottomSection from "./components/navbarBottom";
 import NavbarTopSection from "./components/navbarTop";
+import { Roboto } from 'next/font/google'
+ 
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 export default async function RootLayout({
   children,
@@ -11,7 +17,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className={roboto.className}>
         <div className="block sm:flex">
           <div className="block sm:hidden"><NavbarTopSection /></div> {/* mobile view */}
           <div className="block sm:hidden"><NavbarBottomSection /></div> {/* mobile view */}
