@@ -1,10 +1,30 @@
+'use client'
+
+import { useEffect, useState } from "react";
 import AddItemType from "./addItemType";
 import ActivateButton from "./components/button/activate";
 
-export default async function ItemTypePage() {
+export default function ItemTypePage() {
 
-  const resp = await fetch(`${process.env.BASE_URL}/api/item-type`, {cache: 'no-store'})
-  const rows = await resp.json()
+  // const resp = await fetch(`${process.env.BASE_URL}/api/item-type`, {cache: 'no-store'})
+  // const rows = await resp.json()
+
+  const [rows, setRows] = useState([])
+
+  const fetchData = async () => {
+    try {
+      const resp = await fetch(`/api/item-type`, {cache: 'no-store'})
+      const data = await resp.json()
+      console.log('Fetched Data:', data);
+      setRows(data)
+    } catch (err) {
+      console.log(err)
+    } 
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <div>
