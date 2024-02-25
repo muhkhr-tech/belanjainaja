@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import { GetShopItems } from "./action/getShopItems"
 
 export default function DetailShop({ item }: any) {
   const [modal, setModal] = useState(false)
@@ -13,8 +14,8 @@ export default function DetailShop({ item }: any) {
     if (!modal) {
       setLoadData(true)
       try {
-        const resp = await fetch(`/api/shopping/${item.id}`)
-        setItems(await resp.json())
+        const data:any = await GetShopItems(item.id)
+        setItems(data)
       } catch (err) { console.log(err) }
       finally {
         setLoadData(false)
@@ -83,10 +84,10 @@ export default function DetailShop({ item }: any) {
                   {items.map((row: any, index: any) => (
                     <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                       <td className="">{index + 1}</td>
-                      <td className="px-3">{row.items.name}</td>
-                      <td className="px-1">{row.shopping_items.price}/{row.shopping_items.unit}</td>
-                      <td className="px-1">{row.shopping_items.amount}</td>
-                      <td className="px-1">{row.shopping_items.totalPrice}</td>
+                      <td className="px-3">{row.ba_items.name}</td>
+                      <td className="px-1">{row.ba_shopping_items.price}/{row.ba_shopping_items.unit}</td>
+                      <td className="px-1">{row.ba_shopping_items.amount}</td>
+                      <td className="px-1">{row.ba_shopping_items.totalPrice}</td>
                     </tr>
                   ))}
                 </tbody>

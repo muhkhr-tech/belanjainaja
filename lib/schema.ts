@@ -1,6 +1,5 @@
 import { relations } from 'drizzle-orm';
 import {
-  bigint,
   boolean,
   date,
   integer,
@@ -9,11 +8,10 @@ import {
   serial,
   text,
   timestamp,
-  uniqueIndex,
 } from 'drizzle-orm/pg-core';
 
 export const User = pgTable(
-  'users',
+  'ba_users',
   {
     id: serial('id').primaryKey(),
     name: text('name').notNull(),
@@ -24,7 +22,7 @@ export const User = pgTable(
 );
 
 export const ItemType = pgTable(
-  'item_types',
+  'ba_item_types',
   {
     id: serial('id').primaryKey(),
     name: text('name').notNull().unique(),
@@ -39,7 +37,7 @@ export const ItemTypeRelations = relations(ItemType, ({ many }) => ({
 }));
 
 export const Item = pgTable(
-  'items',
+  'ba_items',
   {
     id: serial('id').primaryKey(),
     name: text('name').notNull().unique(),
@@ -62,7 +60,7 @@ export const ItemRelations = relations(Item, ({ many }) => ({
 }));
 
 export const Shopping = pgTable(
-  'shoppings',
+  'ba_shoppings',
   {
     id: serial('id').primaryKey(),
     description: text('description').notNull().unique(),
@@ -76,7 +74,7 @@ export const ShoppingRelations = relations(Shopping, ({ many }) => ({
   ShoppingItem: many(Item),
 }));
 
-export const ShoppingItem = pgTable('shopping_items', {
+export const ShoppingItem = pgTable('ba_shopping_items', {
   itemId: integer('item_id').notNull().references(() => Item.id),
   shoppingId: integer('shopping_id').notNull().references(() => Shopping.id),
   amount: integer('amount'),
@@ -89,7 +87,7 @@ export const ShoppingItem = pgTable('shopping_items', {
 );
 
 export const Wallet = pgTable(
-  'wallet',
+  'ba_wallet',
   {
     id: serial('id').primaryKey(),
     income: integer('income').notNull(),
@@ -101,7 +99,7 @@ export const Wallet = pgTable(
 );
 
 export const Deposit = pgTable(
-  'deposits',
+  'ba_deposits',
   {
     id: serial('id').primaryKey(),
     savedOn: date('saved_on').notNull(),
@@ -113,7 +111,7 @@ export const Deposit = pgTable(
 );
 
 export const Withdraw = pgTable(
-  'withdraws',
+  'ba_withdraws',
   {
     id: serial('id').primaryKey(),
     pulledOn: date('pulled_on').notNull(),
@@ -125,7 +123,7 @@ export const Withdraw = pgTable(
 );
 
 export const BalanceChart = pgTable(
-  'balance_charts',
+  'ba_balance_charts',
   {
     id: serial('id').primaryKey(),
     month: integer('month').notNull(),

@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import EditItemAction from "./components/action/editItem"
-import GetItem from "./components/action/getItem"
+import EditItemAction from "./action/editItem"
+import GetItem from "./action/getItem"
 
 export default function EditItem({ itemId, itemTypes }: any) {
   const [modal, setModal] = useState(false)

@@ -1,8 +1,8 @@
+import { GetDeposits } from "./action/getDeposits"
 import SetIncome from "./setIncome"
 
 export default async function WalletPage() {
-  const resp = await fetch(`${process.env.BASE_URL}/api/deposit`, { cache: 'no-store' })
-  const rows = await resp.json()
+  const rows = await GetDeposits()
 
   const convertPurchasedDate = (date: string) => {
     const purchaseDate = new Date(date)

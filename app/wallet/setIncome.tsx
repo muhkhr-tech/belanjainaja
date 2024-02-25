@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import SetIncomeAction from "./components/action/setIncome"
+import SetIncomeAction from "./action/setIncome"
 
 export default function SetIncome() {
   const [modal, setModal] = useState(false)

@@ -1,8 +1,8 @@
 'use client'
 
 import { useRouter } from "next/navigation"
-import SetStatus from "../action/setStatus"
 import { useState } from "react"
+import SetStatus from "../../action/setStatus"
 
 export default function ActivateButton({ typeId, status }: any) {
   const [isLoading, setLoading] = useState(false)

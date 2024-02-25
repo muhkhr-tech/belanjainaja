@@ -1,6 +1,7 @@
+import GetItemTypes from "../item-type/action/getItemType"
+
 export default async function TypeItemsCarousel() {
-  const resp = await fetch(`${process.env.BASE_URL}/api/item-type`)
-  const data = await resp.json()
+  const data = await GetItemTypes()
 
   return (
     <div className="carousel carousel-center max-w-md p-2 rounded-md space-x-2 text-xs">

@@ -1,20 +1,20 @@
+import GetItemTypes from "../item-type/action/getItemType";
+import GetItems from "./action/getItems";
 import AddItem from "./addItem";
 import EditItem from "./editItem";
 
 export default async function ItemPage() {
-  const resp_item = await fetch(`${process.env.BASE_URL}/api/item`, { cache: "no-store" })
-  const rows = await resp_item.json()
+  const rows = await GetItems()
 
-  const resp_item_type = await fetch(`${process.env.BASE_URL}/api/item-type`, { cache: "no-store" })
-  const itemTypes = await resp_item_type.json()
+  const itemTypes = await GetItemTypes()
 
   return (
     <>
       <div className="block sm:hidden">
         {rows.map((row: any, index: number) => (
           <div key={index} className="mb-1 border-b-2">
-            <h4 className="font-semibold text-xs">{index+1}. {row.items.name}</h4>
-            <p className="text-xs">Rp{row.items.price}</p>
+            <h4 className="font-semibold text-xs">{index+1}. {row.ba_items.name}</h4>
+            <p className="text-xs">Rp{row.ba_items.price}</p>
           </div>))}
       </div>
       <div className="hidden sm:block">
@@ -34,11 +34,11 @@ export default async function ItemPage() {
               {rows.map((row: any, index: number) => (
                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <td className="px-6 py-4">{index + 1}</td>
-                  <td className="px-6 py-4">{row.items.name}</td>
-                  <td className="px-6 py-4">{row.item_types.name}</td>
-                  <td className="px-6 py-4">{row.items.price}</td>
+                  <td className="px-6 py-4">{row.ba_items.name}</td>
+                  <td className="px-6 py-4">{row.ba_item_types.name}</td>
+                  <td className="px-6 py-4">{row.ba_items.price}</td>
                   <td>
-                    <EditItem itemId={row.items.id} itemTypes={itemTypes} />
+                    <EditItem itemId={row.ba_items.id} itemTypes={itemTypes} />
                   </td>
                 </tr>
               ))}

@@ -1,5 +1,6 @@
 'use client'
 
+import { GetWallet } from "@/app/wallet/action/getWallet"
 import { useEffect, useState } from "react"
 
 interface IntfData {
@@ -21,8 +22,8 @@ export default function DetailWallet() {
   }])
   useEffect(() => {
     const updateData = async () => {
-      const resp = await fetch("/api/wallet")
-      setData(await resp.json())
+      const respData: any = await GetWallet()
+      setData(respData)
     }
 
     updateData()

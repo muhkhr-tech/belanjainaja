@@ -1,10 +1,10 @@
+import GetItemTypes from "./action/getItemType";
 import AddItemType from "./addItemType";
 import ActivateButton from "./components/button/activate";
 
 export default async function ItemTypePage() {
 
-  const resp = await fetch(`${process.env.BASE_URL}/api/item-type`, {cache: 'no-store'})
-  const rows = await resp.json()
+  const rows = await GetItemTypes()
 
   return (
     <div>

@@ -1,18 +1,18 @@
 import FilterYear from "../components/dashboard/filterYear"
+import { GetDeposits } from "../wallet/action/getDeposits"
+import { GetWallet } from "../wallet/action/getWallet"
+import { GetWithdraws } from "../wallet/action/getWithdraws"
 import BalanceChart from "./balanceChart"
 import TypeItemsCarousel from "./typeItemsCarousel"
 
 export default async function DashoardPage() {
   const currentDate = new Date()
 
-  const resp = await fetch(`${process.env.BASE_URL}/api/wallet`, { cache: 'no-store' })
-  const wallet = await resp.json()
+  const wallet = await GetWallet()
 
-  const resp_deposit = await fetch(`${process.env.BASE_URL}/api/deposit?date=${currentDate}`, { cache: 'no-store' })
-  const deposit = await resp_deposit.json()
+  const deposit = await GetDeposits()
 
-  const resp_withdraw = await fetch(`${process.env.BASE_URL}/api/withdraw?date=${currentDate}`, { cache: 'no-store' })
-  const withdraw = await resp_withdraw.json()
+  const withdraw = await GetWithdraws()
 
   const status = () => {
     if (wallet[0].balance >= 500000) {

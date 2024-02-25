@@ -1,12 +1,12 @@
+import GetItems from "../item/action/getItems"
+import { GetShops } from "./action/getShops"
 import AddShop from "./addShop"
 import DetailShop from "./detailShop"
 
 export default async function ShopPage() {
-  const resp_shop = await fetch(`${process.env.BASE_URL}/api/shopping`, { cache: "no-store" })
-  const rows = await resp_shop.json()
+  const rows = await GetShops()
 
-  const resp_item = await fetch(`${process.env.BASE_URL}/api/item`, { cache: "no-store" })
-  const items = await resp_item.json()
+  const items = await GetItems()
 
   const convertPurchasedDate = (date: string) => {
     const purchaseDate = new Date(date)

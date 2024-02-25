@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import AddShopAction from "./components/action/addShop"
+import AddShopAction from "./action/addShop"
 
 interface ItemsChecked {
   id: number;
@@ -281,37 +281,37 @@ console.log(items)
                           <td>
                             <div className="form-control">
                               <label className="cursor-pointer label">
-                                <input type="checkbox" checked={itemsChecked.some((item: any) => item.id === row.items.id)} value={row.items.id} id={index + "-" + row.items.price} onChange={handleCheck} className="checkbox checkbox-warning" />
+                                <input type="checkbox" checked={itemsChecked.some((item: any) => item.id === row.ba_items.id)} value={row.ba_items.id} id={index + "-" + row.ba_items.price} onChange={handleCheck} className="checkbox checkbox-warning" />
                               </label>
                             </div>
                           </td>
                           <td className="">{index + 1}</td>
-                          <td className="px-3">{row.items.name} <span className="block sm:hidden font-bold">(Rp{row.items.price})</span></td>
-                          <td className="hidden sm:block px-6">{row.items.price}</td>
+                          <td className="px-3">{row.ba_items.name} <span className="block sm:hidden font-bold">(Rp{row.ba_items.price})</span></td>
+                          <td className="hidden sm:block px-6">{row.ba_items.price}</td>
                           <td className="">
                             <input
                               type="number"
                               min={1}
-                              id={"amount-" + row.items.id}
-                              value={itemsChecked.filter((item) => item.id==row.items.id)[0]?.amount || ''}
+                              id={"amount-" + row.ba_items.id}
+                              value={itemsChecked.filter((item) => item.id==row.ba_items.id)[0]?.amount || ''}
                               onChange={handleAmountInput}
                               required
                               autoComplete="off"
                               placeholder="2"
-                              disabled={!itemsChecked.some((item: any) => item.id === row.items.id)}
+                              disabled={!itemsChecked.some((item: any) => item.id === row.ba_items.id)}
                               className="input input-sm w-full input-bordered"
                             />
                           </td>
                           <td className="px-6">
                             <input
                               type="text"
-                              id={"unit-" + row.items.id}
-                              value={itemsChecked.filter((item) => item.id==row.items.id)[0]?.unit || ''}
+                              id={"unit-" + row.ba_items.id}
+                              value={itemsChecked.filter((item) => item.id==row.ba_items.id)[0]?.unit || ''}
                               onChange={handleUnitInput}
                               required
                               autoComplete="off"
                               placeholder="kg"
-                              disabled={!itemsChecked.some((item: any) => item.id === row.items.id)}
+                              disabled={!itemsChecked.some((item: any) => item.id === row.ba_items.id)}
                               className="input input-sm w-full input-bordered"
                             />
                           </td>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-import AddItemAction from "./components/action/addItem"
+import AddItemAction from "./action/addItem"
 import { useRouter } from "next/navigation"
 
 export default function AddItem({ itemTypes }: any) {

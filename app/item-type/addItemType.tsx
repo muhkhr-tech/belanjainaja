@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import AddItemTypeAction from "./components/action/addItemType"
+import AddItemTypeAction from "./action/addItemType"
 
 export default function AddItemType() {
   const [modal, setModal] = useState(false)
