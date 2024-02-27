@@ -21,4 +21,6 @@ export async function GET(request: Request) {
   //   expenditure: 0,
   //   balance: 3000000
   // }).where(eq(BalanceChart.id, 8))
+
+  return Response.json({ 'mesage': 'ok' })
 }
