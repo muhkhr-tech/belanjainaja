@@ -8,7 +8,7 @@ export default function Profile() {
 
   return (
     <>
-      <div className="flex justify-end me-0 mt-5 mb-10">
+      <div className="flex justify-end me-0 mt-2 sm:mt-5 mb-5 sm:mb-10">
         <Image
           src={session?.user?.image ?? ""}
           width={50}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import MenuNavbarBottom from "../lib/navigation/menuNavbarBottom";
+import AuthButton from "./button/authButton";
 
 export default function NavbarBottomSection() {
   const menu = MenuNavbarBottom()
@@ -14,6 +15,7 @@ export default function NavbarBottomSection() {
         <li key={index} className={pathname===item.path ? "self-center text-blue-700 p-2": "p-2"}>
           <Link href={item.path} className="flex flex-col items-center w-full"><span>{item.icon}</span> <span className="text-xs">{item.name}</span></Link></li>
       ))}
+      <AuthButton/>
     </ul>
   )
 }
