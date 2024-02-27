@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { Chart } from "chart.js/auto";
 import { useSearchParams } from "next/navigation";
+import WalletChart from "./actions/chart";
 
 interface IntfData {
   month: number,
@@ -35,8 +36,7 @@ function BalanceChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await fetch(`/api/chart?year=${year}`);
-        const respData = await resp.json();
+        const respData:any = await WalletChart(year)
         setData(respData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -44,8 +44,6 @@ function BalanceChart() {
     };
 
     fetchData();
-    console.log(year, 'tahun')
-    // console.log(data)
 
   }, [year]);
 

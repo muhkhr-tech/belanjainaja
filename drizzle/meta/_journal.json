@@ -8,6 +8,20 @@
       "when": 1708818832375,
       "tag": "0000_simple_masque",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1708920649136,
+      "tag": "0001_chunky_forgotten_one",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1708987938206,
+      "tag": "0002_natural_shinko_yamashiro",
+      "breakpoints": true
     }
   ]
 }

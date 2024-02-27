@@ -2,19 +2,20 @@
 
 import { db } from "@/lib/db"
 import { BalanceChart } from "@/lib/schema"
-import { eq } from "drizzle-orm"
-import { NextRequest } from "next/server"
+import { and, eq } from "drizzle-orm"
+import { getServerSession } from "next-auth"
 
-export async function Chart(request: NextRequest) {
-  const { searchParams } : any = request.nextUrl.searchParams
-  const yearParam: any = searchParams.get('year')
-  const year = new Date().getFullYear()
+export default async function WalletChart(year: any) {
+  const session: any = await getServerSession()
+
   let data = null
-  
-  if (yearParam != 'null') {
-    data = await db.select().from(BalanceChart).where(eq(BalanceChart.year, parseInt(yearParam)))
+  const currentDate = new Date()
+  const currentYear = currentDate.getFullYear()
+
+  if (year != null) {
+    data = await db.select().from(BalanceChart).where(and(eq(BalanceChart.year, parseInt(year)), eq(BalanceChart.userEmail, session?.user?.email)))
   } else {
-    data = await db.select().from(BalanceChart).where(eq(BalanceChart.year, year))
+    data = await db.select().from(BalanceChart).where(and(eq(BalanceChart.year, currentYear), eq(BalanceChart.userEmail, session?.user?.email)))
   }
 
   return data

@@ -25,8 +25,9 @@ export const ItemType = pgTable(
   'ba_item_types',
   {
     id: serial('id').primaryKey(),
-    name: text('name').notNull().unique(),
+    name: text('name').notNull(),
     isActive: boolean('is_active').notNull(),
+    userEmail: text("user_email").notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
   }
@@ -40,9 +41,10 @@ export const Item = pgTable(
   'ba_items',
   {
     id: serial('id').primaryKey(),
-    name: text('name').notNull().unique(),
+    name: text('name').notNull(),
     price: integer('price').notNull(),
     typeId: serial('type_id').notNull().references(() => ItemType.id),
+    userEmail: text("user_email").notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
   }
@@ -63,8 +65,9 @@ export const Shopping = pgTable(
   'ba_shoppings',
   {
     id: serial('id').primaryKey(),
-    description: text('description').notNull().unique(),
+    description: text('description').notNull(),
     purchaseDate: date('purchase_date').notNull(),
+    userEmail: text("user_email").notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
   }
@@ -93,6 +96,7 @@ export const Wallet = pgTable(
     income: integer('income').notNull(),
     expenditure: integer('expenditure').notNull(),
     balance: integer('balance').notNull(),
+    userEmail: text("user_email").notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
   }
@@ -105,6 +109,7 @@ export const Deposit = pgTable(
     savedOn: date('saved_on').notNull(),
     amount: integer('amount').notNull(),
     description: text('description').notNull(),
+    userEmail: text("user_email").notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
   }
@@ -117,6 +122,7 @@ export const Withdraw = pgTable(
     pulledOn: date('pulled_on').notNull(),
     amount: integer('amount').notNull(),
     description: text('description').notNull(),
+    userEmail: text("user_email").notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
   }
@@ -131,6 +137,7 @@ export const BalanceChart = pgTable(
     balance: integer('balance').notNull(),
     income: integer('income').notNull(),
     expenditure: integer('expenditure').notNull(),
+    userEmail: text("user_email").notNull(),
     // createdAt: timestamp('created_at').defaultNow().notNull(),
     // updatedAt: timestamp('updated_at').defaultNow().notNull(),
   }

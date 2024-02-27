@@ -8,7 +8,7 @@ export default function Profile() {
 
   return (
     <>
-      <div className="flex justify-end me-0">
+      <div className="flex justify-end me-0 mt-5 mb-10">
         <Image
           src={session?.user?.image ?? ""}
           width={50}
@@ -17,7 +17,7 @@ export default function Profile() {
           alt="Picture of the author"
         />
       </div>
-      <div className="flex justify-end mb-4 ms-auto text-xs text-slate-700">{session?.user?.name}</div>
+      {/* <div className="flex justify-end mb-4 ms-auto text-xs text-slate-700">{session?.user?.name}</div> */}
     </>
   )
 }
