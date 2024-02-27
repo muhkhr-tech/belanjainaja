@@ -12,7 +12,7 @@ export default async function AddShopAction(inputData: any, itemsChecked: any) {
   if (wallet[0] && itemsChecked.length > 0) {
     await db.transaction(async (tx) => {
       try {
-        const shop = await tx.insert(Shopping).values({
+        let shop = await tx.insert(Shopping).values({
           description: inputData.description,
           purchaseDate: inputData.purchaseDate,
           userEmail: session?.user?.email
@@ -23,26 +23,25 @@ export default async function AddShopAction(inputData: any, itemsChecked: any) {
         const year = parseInt(purchaseDate[0])
         const month = parseInt(purchaseDate[1])
 
-        console.log(itemsChecked, shop)
-
-        itemsChecked.map(async (item: any) => {
-
+        await Promise.all(itemsChecked.map(async (item: any) => {
+          console.log('hai', shop[0].id)
+          console.log(item)
           if (item.id !== 0) {
 
             totalPrice = totalPrice + (item.amount * item.price)
 
-            await tx.insert(ShoppingItem).values({
+            let si = await tx.insert(ShoppingItem).values({
               itemId: item.id,
               shoppingId: shop[0].id,
               amount: item.amount,
               price: item.price,
               unit: item.unit,
               totalPrice: item.amount * item.price
-            })
-          }
-        })
+            }).returning()
 
-        console.log(await tx.select().from(Shopping),'====')
+            console.log(si)
+          }
+        }))
 
         await tx.insert(Withdraw).values({
           pulledOn: shop[0].createdAt.toISOString(),
